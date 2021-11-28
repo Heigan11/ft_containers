@@ -1,0 +1,30 @@
+NAME =		test
+
+SRC =		main.cpp ft_test_stack.cpp ft_test_map.cpp ft_test_vector.cpp\
+			std_test_stack.cpp std_test_map.cpp std_test_vector.cpp
+
+OBJ =		$(SRC:.cpp=.o)
+D_FILES =	$(SRC:.cpp=.d)
+
+FLAGS =		-Wall -Wextra -Werror -MMD -std=c++98
+
+all:		$(NAME)
+
+$(NAME):	$(OBJ)
+			g++ $(FLAGS) -o $(NAME) $(OBJ)
+
+-include	$(D_FILES)
+
+clean:
+			rm -f $(OBJ) $(D_FILES)
+
+fclean:		clean
+			rm -f $(NAME) ./$(NAME).exe
+
+re:			fclean all
+
+run:		re
+			./$(NAME)
+
+.PHONY:		all clean fclean re run
+
